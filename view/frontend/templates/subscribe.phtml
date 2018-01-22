@@ -1,0 +1,43 @@
+<div id="app" class="checkout-container">
+    <my-component></my-component>
+
+    <div class="block newsletter">
+        <div class="title"><strong><?= $block->escapeHtml(__('Newsletter')) ?></strong></div>
+        <div class="content">
+            <div class="form subscribe" id="newsletter-validate-detail">
+                <div class="field newsletter">
+                    <label class="label" for="newsletter"><span><?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?></span></label>
+                    <div class="control">
+                        <input name="email" type="email" id="newsletter"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>"
+                               data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button  class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"  @click="send">
+                        <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+$data =  ['actionUrl' => $block->escapeUrl($block->getFormActionUrl()) ]
+
+?>
+<script>
+    var config = <?= \Zend_Json::encode($data); ?>;
+    var baseUrl = '<?= $block->getBaseUrl() ?>';
+</script>
+
+
+<script type="text/x-magento-init">
+    {
+        "#app": {
+            "Bitbull_Newsletter/js/dist/index": {
+            }
+        }
+    }
+</script>

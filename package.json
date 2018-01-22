@@ -1,0 +1,25 @@
+{
+  "name": "bitbull_newsletter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "@sdinteractive/requirejs-resolver": "^1.1.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "vue": "^2.5.13",
+    "vue-loader": "^13.7.0",
+    "vue-resource": "^1.3.5",
+    "vue-template-compiler": "^2.5.13"
+  }
+}
