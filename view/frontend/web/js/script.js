@@ -2,29 +2,29 @@ import Vue from 'vue';
 import Subscribe from './components/Subscribe.vue';
 import VueResource from 'vue-resource';
 
-
-var customerData = require('/Users/martinssaukums/Documents/Projects/www/m22-2/vendor/magento/module-customer/view/frontend/web/js/customer-data.js');
-
-Vue.use(VueResource);
-
-console.log(customerData);
-
-new Vue({
+export var vue  = new Vue({
     el: '#app',
     components: {
         'my-component': Subscribe
     },
+    data: {
+        a: 1,
+    },
     methods: {
+        test: function () {
+          this.a = this.a + 1;
+        },
+
         send: function () {
-            this.$http.post(config.actionUrl, {'email' : 'sdfsadf'}).then(response => {
-                console.log(response);
-            }, response => {
-                // error callback
-            });
-            alert()
+            // this.$http.post(config.actionUrl, {'email' : 'sdfsadf'}).then(response => {
+            //     console.log(response);
+            // }, response => {
+            //     // error callback
+            // });
+            // alert()
         }
     }
 });
 
-console.log(config);
+
 

@@ -11,7 +11,7 @@
         <referenceBlock name="form.subscribe" remove="true" />
 
         <referenceContainer name="footer">
-            <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe2" as="subscribe2" before="-" template="Bitbull_Newsletter::test.phtml"/>
+            <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe2" as="subscribe2" before="-" template="Bitbull_Newsletter::subscribe.phtml"/>
         </referenceContainer>
     </body>
 </page>

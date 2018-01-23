@@ -1,4 +1,4 @@
-/******/ (function(modules) { // webpackBootstrap
+define(function() { return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -102,19 +102,20 @@ module.exports = g;
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["a"] = ({
-    data() {
-        return {
-            checked: false,
-            title: 'Check me'
-        };
-    },
-    methods: {
-        check() {
-            this.checked = !this.checked;
-        }
+  data() {
+    return {
+      checked: false,
+      title: 'Check me'
+    };
+  },
+
+  methods: {
+    check() {
+      this.checked = !this.checked;
     }
+
+  }
 });
 
 /***/ }),
@@ -124,44 +125,41 @@ module.exports = g;
 "use strict";
 
 
-var _vue = __webpack_require__(3);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.vue = void 0;
 
-var _vue2 = _interopRequireDefault(_vue);
+var _vue = _interopRequireDefault(__webpack_require__(3));
 
-var _Subscribe = __webpack_require__(7);
+var _Subscribe = _interopRequireDefault(__webpack_require__(7));
 
-var _Subscribe2 = _interopRequireDefault(_Subscribe);
-
-var _vueResource = __webpack_require__(10);
-
-var _vueResource2 = _interopRequireDefault(_vueResource);
+var _vueResource = _interopRequireDefault(__webpack_require__(10));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var customerData = __webpack_require__(12);
-
-_vue2.default.use(_vueResource2.default);
-
-console.log(customerData);
-
-new _vue2.default({
-    el: '#app',
-    components: {
-        'my-component': _Subscribe2.default
+var vue = new _vue.default({
+  el: '#app',
+  components: {
+    'my-component': _Subscribe.default
+  },
+  data: {
+    a: 1
+  },
+  methods: {
+    test: function test() {
+      this.a = this.a + 1;
     },
-    methods: {
-        send: function send() {
-            this.$http.post(config.actionUrl, { 'email': 'sdfsadf' }).then(function (response) {
-                console.log(response);
-            }, function (response) {
-                // error callback
-            });
-            alert();
-        }
+    send: function send() {// this.$http.post(config.actionUrl, {'email' : 'sdfsadf'}).then(response => {
+      //     console.log(response);
+      // }, response => {
+      //     // error callback
+      // });
+      // alert()
     }
+  }
 });
-
-console.log(config);
+exports.vue = vue;
 
 /***/ }),
 /* 3 */
@@ -13188,11 +13186,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 /* (ignored) */
 
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed: Error: Couldn't find preset \"es2015\" relative to directory \"/Users/martinssaukums/Documents/Projects/www/m22-2/vendor/magento/module-customer/view/frontend/web/js\"\n    at /Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/options/option-manager.js:293:19\n    at Array.map (native)\n    at OptionManager.resolvePresets (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/options/option-manager.js:275:20)\n    at OptionManager.mergePresets (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/options/option-manager.js:264:10)\n    at OptionManager.mergeOptions (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/options/option-manager.js:249:14)\n    at OptionManager.init (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/options/option-manager.js:368:12)\n    at File.initOptions (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/index.js:212:65)\n    at new File (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/file/index.js:135:24)\n    at Pipeline.transform (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-core/lib/transformation/pipeline.js:46:16)\n    at transpile (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-loader/lib/index.js:50:20)\n    at Object.module.exports (/Users/martinssaukums/Documents/Projects/www/m22-2/app/code/Bitbull/Newsletter/node_modules/babel-loader/lib/index.js:175:20)");
-
 /***/ })
-/******/ ]);
+/******/ ])});;
