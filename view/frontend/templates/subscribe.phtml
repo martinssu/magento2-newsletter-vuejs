@@ -8,13 +8,15 @@
                 <div class="field newsletter">
                     <label class="label" for="newsletter"><span><?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?></span></label>
                     <div class="control">
-                        <input name="email" type="email" id="newsletter"
+                        <input v-model="email"
+                               name="email" type="email" id="newsletter"
                                placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>"
-                               data-validate="{required:true, 'validate-email':true}"/>
+                               data-validate="{required:true, 'validate-email':true}"
+                        />
                     </div>
                 </div>
                 <div class="actions">
-                    <button  class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"  @click="send">
+                    <button v-if="isValidEmail" @click="send" class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"  >
                         <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
                     </button>
                 </div>
@@ -23,20 +25,15 @@
     </div>
 </div>
 
-<?php
-$data =  ['actionUrl' => $block->escapeUrl($block->getFormActionUrl()) ]
-
-?>
-<script>
-    var config = <?= \Zend_Json::encode($data); ?>;
-    var baseUrl = '<?= $block->getBaseUrl() ?>';
-</script>
-
 
 <script type="text/x-magento-init">
     {
         "#app": {
             "BitbullNewsletter": {
+               "data" : <?php echo \Zend_Json::encode(
+                       [
+                            'actionUrl' => $block->escapeUrl($block->getFormActionUrl())
+                       ])?>
             }
         }
     }

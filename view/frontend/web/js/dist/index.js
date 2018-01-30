@@ -138,24 +138,40 @@ var _vueResource = _interopRequireDefault(__webpack_require__(10));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+_vue.default.use(_vueResource.default);
+
 var vue = new _vue.default({
   el: '#app',
   components: {
     'my-component': _Subscribe.default
   },
   data: {
-    a: 1
+    response: null,
+    email: '',
+    config: {}
+  },
+  computed: {
+    isValidEmail: function isValidEmail() {
+      if (this.email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(this.email);
+      }
+    }
   },
   methods: {
-    test: function test() {
-      this.a = this.a + 1;
-    },
-    send: function send() {// this.$http.post(config.actionUrl, {'email' : 'sdfsadf'}).then(response => {
-      //     console.log(response);
-      // }, response => {
-      //     // error callback
-      // });
-      // alert()
+    send: function send() {
+      var _this = this;
+
+      if (this.email) {
+        var formData = new FormData();
+        formData.append('email', this.email);
+        this.$http.post(this.config.actionUrl, formData).then(function (response) {
+          _this.response = response;
+          _this.email = '';
+        }, function (response) {
+          _this.response = response;
+        });
+      }
     }
   }
 });

@@ -1,21 +1,15 @@
 
-//
-// ;
-
-
 define([
     'underscore',
-    "./dist/index"
-], function (_, script) {
+    './dist/index',
+    'Magento_Customer/js/customer-data'
+], function (_, script, customerData) {
     "use strict";
-    script.vue.test();
+    return function (config) {
+        script.vue.$data.config = config.data;
 
-    console.log(script.vue.$data.a);
-    script.vue.$watch('a', function (newVal, oldVal) {
-        console.log(newVal);
-        console.log(oldVal);
-    });
-    script.vue.test();
-
-    return false;
+        script.vue.$watch('response', function (newVal, oldVal) {
+            customerData.reload('messages');
+        });
+    }
 });
