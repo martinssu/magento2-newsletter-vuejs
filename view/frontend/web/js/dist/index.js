@@ -102,19 +102,55 @@ module.exports = g;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["a"] = ({
-  data() {
+  data: function () {
     return {
-      checked: false,
-      title: 'Check me'
+      response: null,
+      email: ''
     };
   },
-
-  methods: {
-    check() {
-      this.checked = !this.checked;
+  props: ['message', 'actionUrl'],
+  computed: {
+    isValidEmail: function () {
+      if (this.email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(this.email);
+      }
     }
-
+  },
+  methods: {
+    send: function () {
+      if (this.email) {
+        var formData = new FormData();
+        formData.append('email', this.email);
+        this.$http.post(this.actionUrl, formData).then(response => {
+          this.response = response;
+          this.email = '';
+        }, response => {
+          this.response = response;
+        });
+      }
+    },
+    translate: function (value) {
+      if (!value) return '';
+      return this.$parent.$data.translate(value);
+    }
   }
 });
 
@@ -132,7 +168,7 @@ exports.vue = void 0;
 
 var _vue = _interopRequireDefault(__webpack_require__(3));
 
-var _Subscribe = _interopRequireDefault(__webpack_require__(7));
+var _Newsletter = _interopRequireDefault(__webpack_require__(7));
 
 var _vueResource = _interopRequireDefault(__webpack_require__(10));
 
@@ -143,36 +179,10 @@ _vue.default.use(_vueResource.default);
 var vue = new _vue.default({
   el: '#app',
   components: {
-    'my-component': _Subscribe.default
+    'newsletter': _Newsletter.default
   },
   data: {
-    response: null,
-    email: '',
-    config: {}
-  },
-  computed: {
-    isValidEmail: function isValidEmail() {
-      if (this.email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(this.email);
-      }
-    }
-  },
-  methods: {
-    send: function send() {
-      var _this = this;
-
-      if (this.email) {
-        var formData = new FormData();
-        formData.append('email', this.email);
-        this.$http.post(this.config.actionUrl, formData).then(function (response) {
-          _this.response = response;
-          _this.email = '';
-        }, function (response) {
-          _this.response = response;
-        });
-      }
-    }
+    translate: translate
   }
 });
 exports.vue = vue;
@@ -11430,9 +11440,9 @@ process.umask = function() { return 0; };
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Subscribe_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Newsletter_vue__ = __webpack_require__(1);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7454914b_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Subscribe_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b03e6cf0_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Newsletter_vue__ = __webpack_require__(9);
 var disposed = false
 var normalizeComponent = __webpack_require__(8)
 /* script */
@@ -11449,14 +11459,14 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Subscribe_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_7454914b_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Subscribe_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Newsletter_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_b03e6cf0_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Newsletter_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "view/frontend/web/js/components/Subscribe.vue"
+Component.options.__file = "view/frontend/web/js/components/Newsletter.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -11465,9 +11475,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7454914b", Component.options)
+    hotAPI.createRecord("data-v-b03e6cf0", Component.options)
   } else {
-    hotAPI.reload("data-v-7454914b", Component.options)
+    hotAPI.reload("data-v-b03e6cf0", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -11595,16 +11605,76 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "checkbox-wrapper", on: { click: _vm.check } },
-    [
-      _vm._v("\n    sdafasdfasdfasdf\n    "),
-      _c("div", { class: { checkbox: true, checked: _vm.checked } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "title" })
-    ]
-  )
+  return _c("div", { staticClass: "block newsletter" }, [
+    _c("div", { staticClass: "title" }, [
+      _c("strong", [_vm._v(_vm._s(_vm.translate("Newsletter")))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "content" }, [
+      _c(
+        "div",
+        {
+          staticClass: "form subscribe",
+          attrs: { id: "newsletter-validate-detail" }
+        },
+        [
+          _c("div", { staticClass: "field newsletter" }, [
+            _c(
+              "label",
+              { staticClass: "label", attrs: { for: "newsletter" } },
+              [
+                _c("span", [
+                  _vm._v(_vm._s(_vm.translate("Sign Up for Our Newsletter:")))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.email,
+                    expression: "email"
+                  }
+                ],
+                attrs: {
+                  name: "email",
+                  type: "email",
+                  id: "newsletter",
+                  placeholder: _vm.translate("Enter your email address")
+                },
+                domProps: { value: _vm.email },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.email = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "actions" }, [
+            _vm.isValidEmail
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "action subscribe primary",
+                    attrs: { title: "Subscribe" },
+                    on: { click: _vm.send }
+                  },
+                  [_c("span", [_vm._v(_vm._s(_vm.translate("Subscribe")))])]
+                )
+              : _vm._e()
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -11613,7 +11683,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7454914b", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-b03e6cf0", esExports)
   }
 }
 

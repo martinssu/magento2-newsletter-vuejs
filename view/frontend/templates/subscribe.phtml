@@ -1,40 +1,16 @@
-<div id="app" class="checkout-container">
-    <my-component></my-component>
-
-    <div class="block newsletter">
-        <div class="title"><strong><?= $block->escapeHtml(__('Newsletter')) ?></strong></div>
-        <div class="content">
-            <div class="form subscribe" id="newsletter-validate-detail">
-                <div class="field newsletter">
-                    <label class="label" for="newsletter"><span><?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?></span></label>
-                    <div class="control">
-                        <input v-model="email"
-                               name="email" type="email" id="newsletter"
-                               placeholder="<?= $block->escapeHtmlAttr(__('Enter your email address')) ?>"
-                               data-validate="{required:true, 'validate-email':true}"
-                        />
-                    </div>
-                </div>
-                <div class="actions">
-                    <button v-if="isValidEmail" @click="send" class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"  >
-                        <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="app">
+    <newsletter
+            ref="newsletter"
+            message="hello"
+            action-url="<?php echo $block->escapeUrl($block->getFormActionUrl()) ?>"
+    ></newsletter>
 </div>
 
 
 <script type="text/x-magento-init">
     {
         "#app": {
-            "BitbullNewsletter": {
-               "data" : <?php echo \Zend_Json::encode(
-                       [
-                            'actionUrl' => $block->escapeUrl($block->getFormActionUrl())
-                       ])?>
-            }
+            "BitbullNewsletter": {}
         }
     }
 </script>

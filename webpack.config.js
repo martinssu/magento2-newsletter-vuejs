@@ -1,6 +1,5 @@
 var path = require('path');
 
-
 var srcPath  = path.join(__dirname, '/view/frontend/web/js/script.js'),
     distPath = path.join(__dirname, '/view/frontend/web/js/dist');
 
@@ -10,7 +9,11 @@ module.exports = {
         path: distPath,
         filename: 'index.js',
         libraryTarget: 'amd',
-        umdNamedDefine: true,
+    },
+    resolve: {
+        alias: {
+            vue: 'vue/dist/vue.js',
+        }
     },
     module: {
         loaders: [
@@ -27,10 +30,5 @@ module.exports = {
                 loader: 'vue-loader'
             }
         ]
-    },
-    resolve: {
-        alias: {
-            vue: 'vue/dist/vue.js',
-        }
-    },
+    }
 }
