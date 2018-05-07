@@ -6,9 +6,9 @@ define([
     "use strict";
     return function (config) {
         script.vue.$data.translate = tr;
-
         script.vue.$refs.newsletter.$watch('response', function (newVal, oldVal) {
             customerData.reload('messages');
         });
     }
 });
+
