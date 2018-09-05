@@ -1,16 +1,23 @@
 <div id="app">
+    <overlay
+            ref="overlay"
+    ></overlay>
+    <popup
+            ref="popup"
+    ></popup>
     <newsletter
             ref="newsletter"
-            action-url="<?php echo $block->escapeUrl($block->getFormActionUrl()) ?>"
     ></newsletter>
 </div>
 
 <script type="text/x-magento-init">
     {
         "#app": {
-            "BitbullNewsletter": {}
+            "BitbullNewsletter": {
+                "subscribeActionUrl" : "<?php echo (string)$block->escapeUrl($block->getFormActionUrl()) ?>"
+            }
         }
     }
-</script>
 
+</script>
 
