@@ -11,7 +11,7 @@ class Customer
      * @var Subscriber
      */
     protected $_subscriber;
-    
+
     /**
      * @var CurrentCustomer
      */
@@ -38,10 +38,15 @@ class Customer
      */
     public function afterGetSectionData(\Magento\Customer\CustomerData\Customer $subject, $result)
     {
-        $subscribed = ($this->_currentCustomer->getCustomerId() && $this->_subscriber->loadByCustomerId($this->_currentCustomer->getCustomerId())) ? $this->_subscriber->loadByCustomerId($this->_currentCustomer->getCustomerId())->isSubscribed() : '';
+        $customerId = $this->_currentCustomer->getCustomerId();
+        if ($customerId) {
+            $customerSubscribtion = $this->_subscriber->loadByCustomerId($this->_currentCustomer->getCustomerId());
+            $subscribed = ($customerSubscribtion) ? $customerSubscribtion->isSubscribed() : '';
 
-        $result['subscribed'] = ($subscribed) ? 1 : 0;
+            $result['subscribed'] = ($subscribed) ? 1 : 0;
+        }
 
         return $result;
     }
 }
+

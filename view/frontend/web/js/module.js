@@ -12,7 +12,7 @@ define([
                 return state.newsletterSubscribed;
             },
             function (value, oldValue) {
-                if (value == true)   script.vue.$store.commit('togglePopup'); customerData.reload('customer'); customerData.reload('messages');
+                if (value == true)   script.vue.$store.commit('togglePopup'); customerData.reload('customer');
             }
         );
     }
