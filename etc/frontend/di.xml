@@ -1,0 +1,5 @@
+<config>
+    <type name="\Magento\Customer\CustomerData\Customer">
+        <plugin name="add customer aditional things" type="\Bitbull\Newsletter\Plugin\Customer\CustomerData\Customer" sortOrder="1" />
+    </type>
+</config>
